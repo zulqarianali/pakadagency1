@@ -43,14 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Responsive Navigation
-  const hamburgerMenu = document.querySelector('.hamburger-menu');
+  const hamburgerMenu = document.getElementById('hamburger-menu');
   const navUl = document.querySelector('nav ul');
 
-  if (hamburgerMenu) {
+  if (hamburgerMenu && navUl) {
     hamburgerMenu.addEventListener('click', () => {
       navUl.classList.toggle('active');
     });
   }
+
+  // Header Scroll Effect
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
 
   // Portfolio Modal
   const modal = document.getElementById('portfolio-modal');
