@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #0D0D0D; /* Charcoal Black */
+    --secondary-color: #FFD700; /* Rich Golden */
+    --accent-color: #007BFF; /* Royal Blue */
+    --text-color: #FFFFFF;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(13, 13, 13, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slider {
+    display: flex;
+    width: 100%; /* Changed from 300% for JS control */
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute; /* Changed for stacking */
+    width: 100%; /* Ensure it takes full width */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Combined transition */
+    transform: translateX(100%); /* Start off-screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.slide.active {
+    opacity: 1; /* Show active slide */
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.slide h1 {
+    z-index: 1;
+    font-size: 3rem;
+    max-width: 80%;
+}
+
+.hero-buttons {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    margin: 0 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-100%); }
+    66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
+
+/* Add background images for slides */
+.slide:nth-child(1) { background-image: url('../assets/slide1.jpg'); }
+.slide:nth-child(2) { background-image: url('../assets/slide2.jpg'); }
+.slide:nth-child(3) { background-image: url('../assets/slide3.jpg'); }
+
+/* About Section */
+.about {
+    padding: 4rem 2rem;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+/* Services Section */
+.services {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.testimonial-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.testimonial-item {
+    display: none;
+}
+
+.testimonial-item.active {
+    display: block;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card .icon {
+    font-size: 2.5rem;
+}
+
+/* Portfolio Preview */
+.portfolio-preview {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Contact Form */
+.contact-form {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.contact-form form {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #1a1a1a;
+    color: var(--text-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #1a1a1a;
+}
+
+.social-icons a {
+    margin: 0 0.5rem;
+}
+
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 4px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 60px;
+        left: 0;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .slide h1 {
+        font-size: 2rem;
+    }
+    .about-content {
+        flex-direction: column;
+    }
+}
+
+/* General Page Styling */
+.about-page, .portfolio-page, .services-page, .pricing-page, .contact-page {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Pricing Page */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.pricing-box {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.pricing-box.highlight {
+    border-color: var(--secondary-color);
+}
+
+.pricing-box .price {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin: 1rem 0;
+}
+
+.pricing-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.pricing-box ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Portfolio Page */
+.filter-buttons {
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/* Contact Page */
+.contact-page form {
+    max-width: 600px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-page input,
+.contact-page textarea {
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #1a1a1a;
+    color: var(--text-color);
+}
+
+.whatsapp-contact {
+    margin-top: 2rem;
+}
+
+/* Enhanced About Page */
+.about-page .tagline {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 1rem auto 3rem;
+    color: var(--secondary-color);
+}
+
+.about-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.process-steps .step {
+    background-color: #1a1a1a;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--secondary-color);
+}
+
+@media (min-width: 768px) {
+    .about-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Service Details Page */
+.service-details {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: left;
+}
+
+.service-detail-item {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.service-detail-item .icon {
+    font-size: 2.5rem;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-video {
+    width: 100%;
+    height: 450px;
+}
+
+/* Portfolio Gallery Styling */
+.portfolio-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05);
+}
+
+.portfolio-item iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none; /* Allow clicks to pass through to the parent item */
+}
+
+.portfolio-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+}

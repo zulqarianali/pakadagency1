@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work — Portfolio of Pak Ad Agency</title>
+    <meta name="description" content="Explore the portfolio of Pak Ad Agency, showcasing our work in real and AI video ads, social media content, and branding.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Pak Ad Agency</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger-menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="portfolio-page">
+            <h1>Our Work</h1>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="real">Real Ads</button>
+                <button class="filter-btn" data-filter="ai">AI Ads</button>
+                <button class="filter-btn" data-filter="reels">Reels</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            <div class="portfolio-gallery">
+                <div class="portfolio-item" data-category="real">
+                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
+                    <div class="overlay">Real Ad 1</div>
+                </div>
+                <div class="portfolio-item" data-category="ai">
+                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
+                    <div class="overlay">AI Ad 1</div>
+                </div>
+                <div class="portfolio-item" data-category="reels">
+                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
+                    <div class="overlay">Reel 1</div>
+                </div>
+                <div class="portfolio-item" data-category="branding">
+                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
+                    <div class="overlay">Branding 1</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Pak Ad Agency. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#">YouTube</a> |
+            <a href="#">Instagram</a> |
+            <a href="https://wa.me/03247107543">WhatsApp</a>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <div id="portfolio-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <iframe id="modal-video" src="" frameborder="0" allowfullscreen></iframe>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+</body>
+</html>
