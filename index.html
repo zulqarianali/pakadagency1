@@ -1,220 +1,788 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Ad Agency — Professional AI & Real Video Ads in Pakistan</title>
-    <meta name="description" content="Pak Ad Agency creates professional real and AI video ads, short social videos, and branding content.">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pak Ad Agency | Professional Video & Digital Marketing</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,
+    %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E
+      %3Crect width='100' height='100' rx='20' fill='%233B82F6' /%3E
+      %3Ctext x='50' y='70' font-family='sans-serif' font-weight='bold' font-size='60' fill='white' text-anchor='middle'%3EP%3C/text%3E
+    %3C/svg%3E">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <header>
-        <nav>
-            <div class="logo">Pak Ad Agency</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <a href="contact.html" class="btn btn-contact"><i class="fas fa-phone"></i> Contact me</a>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3B82F6',   /* Bright Blue */
+                        darkBg: '#0D1B2A',    /* Deep Navy */
+                        darkCard: '#152C46',  /* Lighter Navy */
+                        accent: '#05ff33',    /* Neon Green for highlights */
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'bounce-subtle': 'bounce-subtle 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'bounce-subtle': {
+                            '0%, 100%': { transform: 'translateY(-5%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
+                            '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB;
+        }
+
+        /* Video Aspect Ratio 9:16 Fix */
+        .ratio-9-16 {
+            position: relative;
+            padding-bottom: 177.77%; /* 16:9 Portrait */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 12px;
+        }
+        .ratio-9-16 video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile Bottom Nav Specifics */
+        .mobile-bottom-nav {
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Smooth transitions */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Blinking Cursor for Typewriter */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #3B82F6;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Theme Toggle Rotate Animation */
+        .rotate-icon {
+            transition: transform 0.5s ease-in-out;
+        }
+        .rotate-active {
+            transform: rotate(360deg);
+        }
+
+        /* Service Card Backgrounds */
+        .service-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .service-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(13, 27, 42, 0.75); /* Dark overlay */
+            backdrop-filter: blur(3px); /* Blur effect */
+            z-index: -1;
+            transition: background 0.3s;
+        }
+        .group:hover .service-bg::before {
+            background: rgba(13, 27, 42, 0.6); /* Lighter on hover */
+        }
+        
+        /* Hover Underline Animation */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3B82F6;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Floating WhatsApp Pulse */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px; /* Above mobile nav */
+            right: 20px;
+            z-index: 40;
+            animation: pulse-green 2s infinite;
+        }
+        @media (min-width: 768px) {
+            .whatsapp-float {
+                bottom: 30px;
+            }
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-darkBg dark:text-white md:pb-0 selection:bg-primary selection:text-white">
+
+    <!-- Desktop Header (Hidden on Mobile) -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 dark:bg-darkBg/90 backdrop-blur-md shadow-sm hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo (Consistent "P") -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" onclick="window.location.href='index.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-primary/50 transition">
+                        P
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight dark:text-white text-gray-900 group-hover:text-primary transition">Pak<span class="text-primary">Ad</span>Agency</span>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-primary font-bold">Home</a>
+                    <a href="Portfolio.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary transition font-medium">Portfolio</a>
+                    <a href="services.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary transition font-medium">Services</a>
+                    <a href="pricing_page.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary transition font-medium">Pricing</a>
+                    <a href="Clients.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary transition font-medium">Clients</a>
+                    <a href="Contact.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary transition font-medium">Contact</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition relative overflow-hidden">
+                        <div id="theme-icon-container" class="rotate-icon">
+                            <i class="fas fa-moon dark:hidden text-gray-600 text-xl"></i>
+                            <i class="fas fa-sun hidden dark:block text-yellow-400 text-xl"></i>
+                        </div>
+                    </button>
+                    <!-- Header CTA -->
+                    <a href="https://wa.me/923247107543" target="_blank" class="bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-full font-medium transition shadow-lg hover:shadow-blue-500/30 flex items-center gap-2 transform hover:scale-105">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Book Call</span>
+                    </a>
+                </div>
             </div>
-            <div class="hamburger-menu" id="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>GROW <span>YOUR BUSINESS</span> WITH US</h1>
-                    <p>We create professional real and AI video ads, short social videos, and branding content that helps your business grow.</p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">Get Started</a>
-                        <a href="#about" class="btn btn-secondary">Learn More</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="assets/hero-image.png" alt="Business Growth">
-                </div>
+    <!-- Mobile Header (Logo & Theme Toggle Only) -->
+    <header class="md:hidden fixed w-full top-0 z-50 bg-white/90 dark:bg-darkBg/90 backdrop-blur-md shadow-sm px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-primary to-blue-600 rounded-lg flex items-center justify-center text-white font-bold">P</div>
+            <span class="font-bold text-xl dark:text-white text-gray-900">Pak<span class="text-primary">Ad</span></span>
+        </div>
+        <button id="mobile-theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800">
+            <div class="rotate-icon-mobile">
+                <i class="fas fa-moon dark:hidden text-gray-600"></i>
+                <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
             </div>
-        </section>
+        </button>
+    </header>
 
-        <section class="about" data-aos="fade-up">
-            <div class="about-content">
-                <div class="about-image" data-aos="fade-right">
-                    <img src="assets/about-image.png" alt="About Pak Ad Agency">
-                </div>
-                <div class="about-text" data-aos="fade-left">
-                    <h2>About Us</h2>
-                    <p>Pak Ad Agency is a creative production studio specializing in real and AI-powered video ads that help brands grow online.</p>
-                    <h3>Our Process</h3>
-                    <div class="process-timeline">
-                        <span>Discovery</span> &rarr;
-                        <span>Storyboard</span> &rarr;
-                        <span>Production</span> &rarr;
-                        <span>Delivery</span>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-darkBg dark:to-[#0f2238] opacity-90"></div>
+            <!-- Animated Blobs -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float"></div>
+        </div>
+
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                
+                <!-- Text Content -->
+                <div class="md:w-1/2 text-center md:text-left" data-aos="fade-right" data-aos-duration="1000">
+                    <!-- Improved Animated Badge -->
+                    <div class="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-white dark:bg-darkCard border border-blue-200 dark:border-blue-800 shadow-lg mb-8 animate-bounce-subtle">
+                        <span class="flex h-3 w-3 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                        </span>
+                        <span class="text-sm font-bold text-gray-700 dark:text-gray-200">
+                            Available for New Projects
+                        </span>
+                    </div>
+
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 tracking-tight">
+                        We Create <br>
+                        <span class="text-primary" id="typewriter-text"></span><span class="cursor">|</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                        Elevate your brand with data-driven strategies and cinematic visuals. We turn clicks into customers.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="Portfolio.html" class="px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-xl font-bold text-lg transition shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1 text-center">
+                            View Portfolio
+                        </a>
+                        <a href="pricing_page.html" class="px-8 py-4 bg-white dark:bg-darkCard text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-primary rounded-xl font-bold text-lg transition shadow-md hover:shadow-lg text-center">
+                            See Pricing
+                        </a>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="services" data-aos="fade-up">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon">🎥</div>
-                    <h3>Real Person Video Ads</h3>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon">🤖</div>
-                    <h3>AI Video Ads</h3>
-                </div>
-                <div class="service-card">
-                    <div class="icon">📱</div>
-                    <h3>Short Reels & TikTok Ads</h3>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🎬</div>
-                    <h3>Video Editing</h3>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🖋️</div>
-                    <h3>Branding & Design</h3>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="icon">📈</div>
-                    <h3>Social Media Marketing</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="portfolio" data-aos="fade-up">
-            <h2>Portfolio</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
-                    <div class="overlay">Real Ad 1</div>
-                </div>
-                <div class="portfolio-item">
-                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
-                    <div class="overlay">AI Ad 1</div>
-                </div>
-                <div class="portfolio-item">
-                    <iframe src="https://www.youtube.com/embed/ysz5S6PUM-U" frameborder="0" allowfullscreen></iframe>
-                    <div class="overlay">Reel 1</div>
-                </div>
-            </div>
-            <a href="portfolio.html" class="btn">View Full Portfolio</a>
-        </section>
-
-        <section class="pricing" data-aos="fade-up">
-            <div class="container">
-                <h2>Choose Your Plan</h2>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Normal AI Ad</h3>
-                        <p class="price">PKR 2,000</p>
-                        <ul>
-                            <li>Normal AI Video Ad</li>
-                            <li>Normal Editing</li>
-                            <li>Standard Background Music</li>
-                            <li>1 Revision Round</li>
-                        </ul>
-                        <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Normal%20AI%20Ad%20plan%20(PKR%202000)." class="btn">Select Plan</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Professional AI Ad</h3>
-                        <p class="price">PKR 2,500</p>
-                        <ul>
-                            <li>Full AI Video Ad</li>
-                            <li>Professional Video Editing</li>
-                            <li>Advanced Graphics</li>
-                            <li>2 Revisions Rounds</li>
-                        </ul>
-                        <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Professional%20AI%20Ad%20plan%20(PKR%202500)." class="btn">Select Plan</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Real Person Ad (Standard)</h3>
-                        <p class="price">PKR 4,000</p>
-                        <ul>
-                            <li>Real Talent (Actor/Model)</li>
-                            <li>Full HD Quality</li>
-                            <li>Custom Scriptwriting</li>
-                            <li>3 Revisions Rounds</li>
-                        </ul>
-                        <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Real%20Person%20Ad%20(Standard)%20plan%20(PKR%204000)." class="btn">Select Plan</a>
-                    </div>
-                    <div class="pricing-card recommended">
-                        <div class="ribbon">Recommended</div>
-                        <h3>Real Person Ad (Ultra/Premium)</h3>
-                        <p class="price">PKR 5,000</p>
-                        <ul>
-                            <li>Highest Quality (Ultra/4K)</li>
-                            <li>Dedicated Art Direction</li>
-                            <li>Professional Voice-Over</li>
-                            <li>Full Usage Rights & Priority Support</li>
-                        </ul>
-                        <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Real%20Person%20Ad%20(Ultra/Premium)%20plan%20(PKR%205000)." class="btn">Select Plan</a>
+                <!-- Hero Image -->
+                <div class="md:w-1/2" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative">
+                        <!-- Decorative Elements behind image -->
+                        <div class="absolute -inset-4 bg-gradient-to-r from-primary to-purple-600 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
+                        <img src="https://i.postimg.cc/2ST6VvVM/pakadagency-pngqq.png" 
+                             alt="Creative Agency Team" 
+                             class="relative rounded-2xl shadow-2xl border-4 border-white dark:border-darkCard transform rotate-2 hover:rotate-0 transition duration-500 w-full object-cover h-[400px] md:h-[500px]">
+                        
+                        <!-- Floating Badge on Image -->
+                        <div class="absolute -bottom-6 -left-6 bg-white dark:bg-darkCard p-4 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 animate-float">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-yellow-100 p-2 rounded-full text-yellow-600">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-xl">4.9/5</div>
+                                    <div class="text-xs text-gray-500">Client Rating</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="testimonials" data-aos="fade-up">
-            <h2>Testimonials</h2>
-            <div class="testimonial-carousel">
-                <div class="testimonial-item active">
-                    <p>"Pak Ad Agency delivered a fantastic video ad for our brand. Highly recommended!"</p>
-                    <span>- Client A</span>
+            <!-- Re-triggerable Stats Bar -->
+            <div id="stats-section" class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto bg-white/80 dark:bg-darkCard/60 backdrop-blur-md p-10 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700">
+                <div class="text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 mx-auto bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center text-primary text-xl mb-3">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="text-4xl font-extrabold text-gray-900 dark:text-white mb-1 counter" data-target="5">0</div>
+                    <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Years Exp.</div>
                 </div>
-                <div class="testimonial-item">
-                    <p>"The AI-powered video ad was a game-changer for our marketing campaign."</p>
-                    <span>- Client B</span>
+                <div class="text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 mx-auto bg-purple-100 dark:bg-purple-900/50 rounded-full flex items-center justify-center text-purple-500 text-xl mb-3">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="text-4xl font-extrabold text-gray-900 dark:text-white mb-1 counter" data-target="200">0</div>
+                    <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Projects</div>
                 </div>
-                <div class="testimonial-item">
-                    <p>"Professional, creative, and efficient. We'll be working with them again."</p>
-                    <span>- Client C</span>
+                <div class="text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 mx-auto bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center text-green-500 text-xl mb-3">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="text-4xl font-extrabold text-gray-900 dark:text-white mb-1 counter" data-target="98">0</div>
+                    <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Satisfaction %</div>
+                </div>
+                <div class="text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-12 h-12 mx-auto bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center text-orange-500 text-xl mb-3">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="text-4xl font-extrabold text-gray-900 dark:text-white mb-1 counter" data-target="24">0</div>
+                    <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Support (Hrs)</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="contact-form" data-aos="fade-up">
-            <h2>Contact Us</h2>
-            <form>
-                <input type="text" name="name" placeholder="Name">
-                <input type="email" name="email" placeholder="Email">
-                <textarea name="message" placeholder="Message"></textarea>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-            <div class="contact-info">
-                <p>WhatsApp: +92 324 7107543</p>
-                <p>Email: info@pakadagency.com</p>
+    <!-- Services Section with Background Images -->
+    <section class="py-24 bg-gray-50 dark:bg-[#0b1623]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="zoom-in">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">What We Do</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 mb-4">Our <span class="text-primary">Services</span></h2>
+                <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p>© 2025 Pak Ad Agency. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="#">YouTube</a> |
-            <a href="#">Instagram</a> |
-            <a href="https://wa.me/03247107543">WhatsApp</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: AI Video Ads -->
+                <div class="service-bg rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-2 group p-8 h-80 flex flex-col justify-end border border-gray-200 dark:border-gray-700" 
+                     style="background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop');"
+                     data-aos="fade-up" data-aos-delay="0">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-primary/90 rounded-lg flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">AI Video Ads</h3>
+                        <p class="text-gray-200 text-sm">Next-gen commercials generated by AI to save cost and time.</p>
+                    </div>
+                </div>
+
+                <!-- Service 2: Short Form -->
+                <div class="service-bg rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-2 group p-8 h-80 flex flex-col justify-end border border-gray-200 dark:border-gray-700" 
+                     style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop');"
+                     data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-purple-600/90 rounded-lg flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Short Form Content</h3>
+                        <p class="text-gray-200 text-sm">Viral Reels & TikToks optimized for maximum retention.</p>
+                    </div>
+                </div>
+
+                <!-- Service 3: Video Editing -->
+                <div class="service-bg rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-2 group p-8 h-80 flex flex-col justify-end border border-gray-200 dark:border-gray-700" 
+                     style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44c?q=80&w=1000&auto=format&fit=crop');"
+                     data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-green-600/90 rounded-lg flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Pro Video Editing</h3>
+                        <p class="text-gray-200 text-sm">Color grading, sound design, and cinematic cuts.</p>
+                    </div>
+                </div>
+
+                <!-- Service 4: 3D Visualization -->
+                <div class="service-bg rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-2 group p-8 h-80 flex flex-col justify-end border border-gray-200 dark:border-gray-700" 
+                     style="background-image: url('https://images.unsplash.com/photo-1617791160505-6f00504e3519?q=80&w=1000&auto=format&fit=crop');"
+                     data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-orange-600/90 rounded-lg flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">3D Visualization</h3>
+                        <p class="text-gray-200 text-sm">Product modeling and architectural renders.</p>
+                    </div>
+                </div>
+
+                <!-- Service 5: Graphic Design -->
+                <div class="service-bg rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-2 group p-8 h-80 flex flex-col justify-end border border-gray-200 dark:border-gray-700" 
+                     style="background-image: url('https://images.unsplash.com/photo-1626785774573-4b7993143a23?q=80&w=1000&auto=format&fit=crop');"
+                     data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-pink-600/90 rounded-lg flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Graphic Design</h3>
+                        <p class="text-gray-200 text-sm">Logos, branding, and social media posts.</p>
+                    </div>
+                </div>
+
+                <!-- Service 6: Marketing -->
+                <div class="service-bg rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 transform hover:-translate-y-2 group p-8 h-80 flex flex-col justify-end border border-gray-200 dark:border-gray-700" 
+                     style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop');"
+                     data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-teal-600/90 rounded-lg flex items-center justify-center text-white text-xl mb-4 group-hover:scale-110 transition">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Digital Marketing</h3>
+                        <p class="text-gray-200 text-sm">Ads management on FB, Google, and TikTok.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Portfolio Section (RE-ADDED) -->
+    <section class="py-24 bg-white dark:bg-darkBg relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-down">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Portfolio</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold mt-2 mb-4">Featured <span class="text-primary">Masterpieces</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Video 1 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border-2 border-transparent hover:border-primary transition-colors duration-300" data-aos="flip-left" data-aos-duration="1000">
+                    <div class="ratio-9-16">
+                        <video controls poster="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761994263/E_-Commerence.finl_2_sjnfik.jpg">
+                            <source src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761994263/E_-Commerence.finl_2_sjnfik.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none">
+                        <span class="text-accent text-sm font-bold uppercase tracking-wider mb-1 block">E-Commerce</span>
+                        <h3 class="text-white text-xl font-bold">Brand Video Ad</h3>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border-2 border-transparent hover:border-primary transition-colors duration-300" data-aos="flip-up" data-aos-duration="1000">
+                    <div class="ratio-9-16">
+                        <video controls poster="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761995142/U_Travel.finl_1_i1e65s.jpg">
+                            <source src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761995142/U_Travel.finl_1_i1e65s.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none">
+                        <span class="text-accent text-sm font-bold uppercase tracking-wider mb-1 block">Travel</span>
+                        <h3 class="text-white text-xl font-bold">Cinematic Travel Short</h3>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900 border-2 border-transparent hover:border-primary transition-colors duration-300" data-aos="flip-right" data-aos-duration="1000">
+                    <div class="ratio-9-16">
+                        <video controls poster="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761999971/Lahore_Organic_Farms_finl1_x5gnwj.jpg">
+                            <source src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761999971/Lahore_Organic_Farms_finl1_x5gnwj.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none">
+                        <span class="text-accent text-sm font-bold uppercase tracking-wider mb-1 block">Real Estate</span>
+                        <h3 class="text-white text-xl font-bold">Property Walkthrough</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- See More Videos Button -->
+            <div class="text-center mt-12">
+                <a href="Portfolio.html" class="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold hover:scale-105 transition transform shadow-lg text-lg">
+                    <span>See More Videos</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-gray-50 dark:bg-darkCard/20 border-t dark:border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Happy <span class="text-primary">Clients</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-darkCard p-8 rounded-2xl relative shadow-lg hover:shadow-xl transition" data-aos="fade-right" data-aos-offset="200">
+                    <i class="fas fa-quote-right absolute top-6 right-6 text-4xl text-gray-200 dark:text-gray-700"></i>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 leading-relaxed">"The AI video ads they produced for our e-commerce store increased our sales by 200%. Absolutely phenomenal work!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Ali+Khan&background=3B82F6&color=fff" class="w-12 h-12 rounded-full border-2 border-primary">
+                        <div>
+                            <h4 class="font-bold text-lg">Ali Khan</h4>
+                            <p class="text-sm text-gray-500">CEO, ShopNow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-darkCard p-8 rounded-2xl relative shadow-lg hover:shadow-xl transition" data-aos="fade-up" data-aos-offset="200">
+                    <i class="fas fa-quote-right absolute top-6 right-6 text-4xl text-gray-200 dark:text-gray-700"></i>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 leading-relaxed">"Professional team with great communication. They handled our entire real estate branding perfectly."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Sara+Ahmed&background=10B981&color=fff" class="w-12 h-12 rounded-full border-2 border-green-500">
+                        <div>
+                            <h4 class="font-bold text-lg">Sara Ahmed</h4>
+                            <p class="text-sm text-gray-500">Director, Urban Estates</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white dark:bg-darkCard p-8 rounded-2xl relative shadow-lg hover:shadow-xl transition" data-aos="fade-left" data-aos-offset="200">
+                    <i class="fas fa-quote-right absolute top-6 right-6 text-4xl text-gray-200 dark:text-gray-700"></i>
+                    <p class="text-gray-600 dark:text-gray-300 italic mb-6 leading-relaxed">"Best agency in Lahore for video editing. Quick turnaround and high quality results."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://ui-avatars.com/api/?name=Omer+Riaz&background=F59E0B&color=fff" class="w-12 h-12 rounded-full border-2 border-orange-500">
+                        <div>
+                            <h4 class="font-bold text-lg">Omer Riaz</h4>
+                            <p class="text-sm text-gray-500">Founder, FoodiesPoint</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slots Section (3 Small Ads) -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            
+            <!-- Ad Spot 1 (300x250) -->
+            <div class="w-full bg-gray-50 dark:bg-gray-800/50 rounded-xl flex items-center justify-center overflow-hidden shadow-sm">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '07a7d9d339e1f8e7680cf9206c8acce9',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/07a7d9d339e1f8e7680cf9206c8acce9/invoke.js"></script>
+            </div>
+
+            <!-- Ad Spot 2 (320x50 - Smaller Center Ad) -->
+            <div class="w-full bg-gray-50 dark:bg-gray-800/50 rounded-xl flex items-center justify-center overflow-hidden shadow-sm">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '81effd01d5bb87b0fe05e49069a26bb2',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/81effd01d5bb87b0fe05e49069a26bb2/invoke.js"></script>
+            </div>
+
+            <!-- Ad Spot 3 (300x250) -->
+            <div class="w-full bg-gray-50 dark:bg-gray-800/50 rounded-xl flex items-center justify-center overflow-hidden shadow-sm">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '07a7d9d339e1f8e7680cf9206c8acce9',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/07a7d9d339e1f8e7680cf9206c8acce9/invoke.js"></script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button (Hidden on Mobile) -->
+    <a href="https://wa.me/923247107543" target="_blank" class="whatsapp-float bg-[#25D366] text-white w-14 h-14 rounded-full hidden md:flex items-center justify-center shadow-2xl hover:bg-[#20b858] transition duration-300">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Footer: Adjusted padding for mobile -->
+    <footer class="bg-white dark:bg-darkCard border-t dark:border-gray-800 pt-16 pb-20 md:pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">P</div>
+                        <span class="font-bold text-xl">Pak Ad Agency</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                        We are a full-service digital agency helping businesses grow through creative innovation and strategic marketing.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                        <li><a href="Portfolio.html" class="hover:text-primary transition">Portfolio</a></li>
+                        <li><a href="services.html" class="hover:text-primary transition">Services</a></li>
+                        <li><a href="pricing_page.html" class="hover:text-primary transition">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+                        <li class="flex items-center gap-2"><i class="fas fa-envelope text-primary"></i> pakadagency1@gmail.com</li>
+                        <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-primary"></i> +92 324 7107543</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-primary"></i> Lahore, Pakistan</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email" class="bg-gray-100 dark:bg-darkBg px-4 py-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-primary border dark:border-gray-700">
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition shadow-lg"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-100 dark:border-gray-800 pt-8 text-center text-sm text-gray-500">
+                &copy; 2025 Pak Ad Agency. All rights reserved.
+            </div>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Mobile Bottom Navigation Bar (Fixed) -->
+    <div class="md:hidden fixed bottom-0 w-full bg-white/90 dark:bg-darkCard/95 backdrop-blur-lg border-t dark:border-gray-800 z-50 mobile-bottom-nav">
+        <div class="grid grid-cols-5 text-center py-2">
+            <a href="index.html" class="flex flex-col items-center justify-center text-primary">
+                <i class="fas fa-home text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="Portfolio.html" class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary transition">
+                <i class="fas fa-play-circle text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Portfolio</span>
+            </a>
+            <div class="relative -top-5">
+                <a href="https://wa.me/923247107543" class="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full shadow-lg shadow-blue-500/40 border-4 border-white dark:border-darkBg transform active:scale-95 transition">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                </a>
+            </div>
+            <a href="services.html" class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary transition">
+                <i class="fas fa-layer-group text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Services</span>
+            </a>
+            <a href="Contact.html" class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 hover:text-primary transition">
+                <i class="fas fa-envelope text-lg mb-1"></i>
+                <span class="text-[10px] font-medium">Contact</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init();
+        // Initialize Animations
+        AOS.init({
+            duration: 800,
+            once: false, // Re-animate on scroll up/down
+            mirror: true, // Animation works when scrolling back up
+            easing: 'ease-out-cubic'
+        });
+
+        // Theme Management with Rotation Animation
+        const html = document.documentElement;
+        const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
+        const themeIconContainer = document.getElementById('theme-icon-container');
+        
+        // Check Local Storage
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggles.forEach(btn => {
+            if(btn) {
+                btn.addEventListener('click', () => {
+                    // Rotate Animation
+                    if(themeIconContainer) {
+                        themeIconContainer.classList.add('rotate-active');
+                        setTimeout(() => themeIconContainer.classList.remove('rotate-active'), 500);
+                    }
+
+                    html.classList.toggle('dark');
+                    if (html.classList.contains('dark')) {
+                        localStorage.theme = 'dark';
+                    } else {
+                        localStorage.theme = 'light';
+                    }
+                });
+            }
+        });
+
+        // Typewriter Effect
+        const words = ["AI Video Ads", "Short Form Content", "Brand Dominance", "Performance Ads"];
+        let i = 0;
+        let timer;
+
+        function typeWriter() {
+            const heading = document.getElementById("typewriter-text");
+            const word = words[i];
+            let current = heading.textContent;
+            
+            if (current.length < word.length) {
+                heading.textContent = word.substring(0, current.length + 1);
+                timer = setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            const heading = document.getElementById("typewriter-text");
+            let current = heading.textContent;
+
+            if (current.length > 0) {
+                heading.textContent = current.substring(0, current.length - 1);
+                timer = setTimeout(erase, 50);
+            } else {
+                i = (i + 1) % words.length;
+                typeWriter();
+            }
+        }
+
+        // Start Typewriter
+        typeWriter();
+
+        // Re-triggerable Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    
+                    const updateCount = () => {
+                        const inc = target / speed * 4; // speed multiplier
+                        if (count < target) {
+                            count += inc;
+                            counter.innerText = Math.ceil(count) + "+";
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target + "+";
+                        }
+                    };
+                    updateCount();
+                } else {
+                    // Reset when out of view to re-animate later
+                    entry.target.innerText = "0";
+                }
+            });
+        };
+
+        const counterObserver = new IntersectionObserver(animateCounters, {
+            threshold: 0.5
+        });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
     </script>
 </body>
 </html>
